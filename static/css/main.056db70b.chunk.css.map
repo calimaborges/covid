@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.module.css"],"names":[],"mappings":"AAAA,sBACE,YAAa,CACb,qBAAsB,CACtB,kBAAmB,CACnB,kBACF,CAEA,wBACE,wBACF","file":"main.056db70b.chunk.css","sourcesContent":[".Container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 0 1rem 0 0rem;\n}\n\n.ButtonGroup {\n  margin: 0 0.2rem 2rem 1rem;\n}"]}
