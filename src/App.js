@@ -80,7 +80,7 @@ function App({ data }) {
             <FilterButton key={sigla} sigla={sigla} />
           ))}
       </div>
-      <h1>Exindo dados para {estado}</h1>
+      <h1>Exibindo dados para {estado}</h1>
       <ResponsiveContainer width="95%" height={400}>
         <LineChart data={dataGroupedBySigla[estado].slice(26)}>
           <CartesianGrid strokeDasharray="3 3" />
