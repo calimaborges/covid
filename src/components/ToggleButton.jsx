@@ -1,17 +1,13 @@
 import React from "react";
+import styles from "./ToggleButton.module.css";
 
-export default function ToggleButton({ active, ...props}) {
+export default function ToggleButton({ active, ...props }) {
   return (
     <button
+      className={styles.Button}
       style={{
-        border: "1px solid black",
-        padding: "0.4rem",
-        fontSize: "1.2rem",
-        margin: "0.1rem",
-        fontFamily: "monospace",
         backgroundColor: active ? "black" : "white",
         color: active ? "white" : "black",
-        outline: "none",
       }}
       {...props}
     />

@@ -1,15 +1,19 @@
+import "typeface-roboto-condensed";
+import "typeface-roboto-mono";
+import "./index.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import groupBy from "lodash.groupby";
 import App from "./App";
 import parseCsv from "./parseCsv";
-import getCsvUrl from "./getCsvUrl";
+import getCsvInfo from "./getCsvInfo";
 
 
 async function main() {
   const mainComponent = document.getElementById("root")
   mainComponent.innerHTML = `<p>Obtendo endereço do CSV...</p>`;
-  const url = await getCsvUrl();
+  const { url, dataAtualizacao } = await getCsvInfo();
 
   mainComponent.innerHTML = `<p>Obtendo CSV de ${url}...</p>`;
   const csv = await parseCsv(url);
@@ -34,7 +38,7 @@ async function main() {
 
   ReactDOM.render(
     <React.StrictMode>
-      <App data={dataGroupedBySigla} />
+      <App data={dataGroupedBySigla} dataAtualizacao={dataAtualizacao} />
     </React.StrictMode>,
     mainComponent
   );

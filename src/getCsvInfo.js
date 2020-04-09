@@ -1,4 +1,4 @@
-export default async function getCsvUrl() {
+export default async function getCsvInfo() {
   const response = await fetch(
     "https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalGeral",
     {
@@ -19,5 +19,8 @@ export default async function getCsvUrl() {
     }
   );
   const json = await response.json();
-  return json?.results[0]?.arquivo?.url;
+  return {
+    url: json?.results[0]?.arquivo?.url,
+    dataAtualizacao: json?.results[0]?.dt_atualizacao,
+  };
 }

@@ -6,11 +6,11 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
+  ReferenceLine,
   ResponsiveContainer,
 } from "recharts";
 
-export default function ResponsiveLineChart({ scale, data, config }) {
+export default function ResponsiveLineChart({ scale, data, config, reference }) {
   return (
     <ResponsiveContainer width="100%" minHeight={350}>
       <LineChart
@@ -19,9 +19,9 @@ export default function ResponsiveLineChart({ scale, data, config }) {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
-        <Legend verticalAlign="top" height={45} />
         <XAxis dataKey="date" />}
         <YAxis scale={scale} domain={[0.99, "dataMax"]} allowDataOverflow />
+        <ReferenceLine x={data[reference].date} stroke="black" />
         {config.map((lineProps) => (
           <Line
             animationDuration={500}

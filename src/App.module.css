@@ -6,5 +6,15 @@
 }
 
 .ButtonGroup {
-  margin: 0 0.2rem 2rem 1rem;
+  margin: 0 0.2rem 1rem 1rem;
+}
+
+.BoxGroup {
+  display: flex;
+  justify-content: stretch;
+  margin: 0 0.2rem 1rem 1rem;
+}
+
+.BoxGroupTitle {
+  font-weight: bold;
 }
