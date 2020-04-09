@@ -25,8 +25,6 @@ const acumuladosConfig = [
   },
 ];
 
-console.log(styles);
-
 function App({ data, dataAtualizacao }) {
   const { BRASIL, ...estados } = data;
   const [scale, setScale] = React.useState("linear");
