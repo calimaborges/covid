@@ -1,4 +1,5 @@
 import React from "react";
+import ForkMeOnGithub from 'fork-me-on-github';
 import ResponsiveLineChart from "./components/ResponsiveLineChart";
 import ResponsiveAreaChart from "./components/ResponsiveAreaChart";
 import ToggleButton from "./components/ToggleButton";
@@ -35,6 +36,7 @@ function App({ data, dataAtualizacao }) {
 
   return (
     <div className={styles.Container}>
+      <ForkMeOnGithub repo="https://github.com/calimaborges/covid" />
       <div className={styles.ButtonGroup}>
         <ToggleButton
           onClick={() => setEstado("BRASIL")}
@@ -55,7 +57,7 @@ function App({ data, dataAtualizacao }) {
           ))}
       </div>
       <div className={styles.BoxGroupTitle}>
-        {relevantData[currentBox].date}
+        {relevantData[currentBox].data}
       </div>
       <div className={styles.BoxGroup}>
         <button

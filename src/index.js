@@ -19,14 +19,14 @@ async function main() {
   const csv = await parseCsv(url);
 
   const dataGroupedBySigla = groupBy(csv.data, "sigla");
-  const dataGroupedByData = groupBy(csv.data, "date");
+  const dataGroupedByData = groupBy(csv.data, "data");
 
   for (let key in dataGroupedByData) {
     dataGroupedByData[key] = dataGroupedByData[key].reduce((soma, curr) => {
       return {
         sigla: "BRASIL",
         regiao: "BRASIL",
-        date: key,
+        data: key,
         casosNovos: (soma.casosNovos || 0) + curr.casosNovos,
         casosAcumulados: (soma.casosAcumulados || 0) + curr.casosAcumulados,
         obitosNovos: (soma.obitosNovos || 0) + curr.obitosNovos,

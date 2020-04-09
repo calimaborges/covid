@@ -19,9 +19,9 @@ export default function ResponsiveLineChart({ scale, data, config, reference }) 
       >
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
-        <XAxis dataKey="date" />}
+        <XAxis dataKey="data" />}
         <YAxis scale={scale} domain={[0.99, "dataMax"]} allowDataOverflow />
-        <ReferenceLine x={data[reference].date} stroke="black" />
+        <ReferenceLine x={data[reference].data} stroke="black" />
         {config.map((lineProps) => (
           <Line
             animationDuration={500}
