@@ -39,7 +39,6 @@ function App({ data }) {
   dataGroupedBySigla["BRASIL"] = Object.values(dataGroupedByData);
 
   const { BRASIL, ...estados } = dataGroupedBySigla;
-
   const [estado, setEstado] = React.useState("BRASIL");
 
   function FilterButton({ sigla }) {
@@ -70,7 +69,7 @@ function App({ data }) {
         alignItems: "center",
       }}
     >
-      <div>
+      <div style={{ marginBottom: "1rem" }}>
         <FilterButton sigla="BRASIL" />
         {Object.keys(estados)
           .sort()
@@ -78,7 +77,7 @@ function App({ data }) {
             <FilterButton key={sigla} sigla={sigla} />
           ))}
       </div>
-      <ResponsiveContainer width="98%" minHeight={100} aspect={16 / 7}>
+      <ResponsiveContainer width="98%" minHeight={350} height="98%">
         <LineChart data={dataGroupedBySigla[estado].slice(26)}>
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
@@ -95,8 +94,8 @@ function App({ data }) {
           ))}{" "}
         </LineChart>
       </ResponsiveContainer>
-      <p>
-        Dados baixados de{" "}
+      <p style={{ alignSelf: "flex-end", marginRight: "1rem" }}>
+        Fonte:{" "}
         <a
           href="https://covid.saude.gov.br/"
           target="_blank"
