@@ -94,7 +94,7 @@ function App({ data }) {
           ))}{" "}
         </LineChart>
       </ResponsiveContainer>
-      <p style={{ alignSelf: "flex-end", marginRight: "1rem" }}>
+      <p>
         Fonte:{" "}
         <a
           href="https://covid.saude.gov.br/"
