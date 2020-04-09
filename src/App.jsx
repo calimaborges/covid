@@ -1,5 +1,4 @@
 import React from "react";
-import ForkMeOnGithub from 'fork-me-on-github';
 import ResponsiveLineChart from "./components/ResponsiveLineChart";
 import ResponsiveAreaChart from "./components/ResponsiveAreaChart";
 import ToggleButton from "./components/ToggleButton";
@@ -136,6 +135,16 @@ function App({ data, dataAtualizacao }) {
         </a>
         <br />
         Última atualização: {dataAtualizacao}
+      </p>
+
+      <p style={{ textAlign: "center" }}>
+        <a
+          href="https://github.com/calimaborges/covid.git"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
       </p>
     </div>
   );
