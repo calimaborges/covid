@@ -48,7 +48,7 @@ function App({ data }) {
         onClick={() => setEstado(sigla)}
         style={{
           border: "1px solid black",
-          padding: "0.2rem",
+          padding: "0.4rem",
           fontSize: "1.2rem",
           margin: "0.1rem",
           fontFamily: "monospace",
@@ -65,7 +65,6 @@ function App({ data }) {
   return (
     <div
       style={{
-        margin: "5rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -79,8 +78,7 @@ function App({ data }) {
             <FilterButton key={sigla} sigla={sigla} />
           ))}
       </div>
-      <h1>Exibindo dados para {estado}</h1>
-      <ResponsiveContainer width="95%" height={400}>
+      <ResponsiveContainer width="98%" minHeight={100} aspect={16 / 7}>
         <LineChart data={dataGroupedBySigla[estado].slice(26)}>
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
