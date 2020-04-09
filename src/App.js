@@ -21,7 +21,6 @@ const dataConfig = [
 function App({ data }) {
   const dataGroupedBySigla = groupBy(data, "sigla");
   const dataGroupedByData = groupBy(data, "date");
-  console.log(data);
 
   for (let key in dataGroupedByData) {
     dataGroupedByData[key] = dataGroupedByData[key].reduce((soma, curr) => {
