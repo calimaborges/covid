@@ -36,7 +36,6 @@ function App({ data, dataAtualizacao }) {
 
   return (
     <div className={styles.Container}>
-      <ForkMeOnGithub repo="https://github.com/calimaborges/covid" />
       <div className={styles.ButtonGroup}>
         <ToggleButton
           onClick={() => setEstado("BRASIL")}
