@@ -77,7 +77,7 @@ function App({ data }) {
             <FilterButton key={sigla} sigla={sigla} />
           ))}
       </div>
-      <ResponsiveContainer width="98%" minHeight={350} height="98%">
+      <ResponsiveContainer width="95%" minHeight={350} height="98%">
         <LineChart data={dataGroupedBySigla[estado].slice(26)}>
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
