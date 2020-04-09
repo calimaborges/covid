@@ -67,6 +67,7 @@ function App({ data }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        padding: "0 1rem 0 0rem"
       }}
     >
       <div style={{ marginBottom: "1rem" }}>
@@ -77,15 +78,16 @@ function App({ data }) {
             <FilterButton key={sigla} sigla={sigla} />
           ))}
       </div>
-      <ResponsiveContainer width="95%" minHeight={350} height="98%">
+      <ResponsiveContainer width="100%" minHeight={350}>
         <LineChart data={dataGroupedBySigla[estado].slice(26)}>
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
-          <Legend />
+          <Legend verticalAlign="top" height={45} />
           <XAxis dataKey="date" />
           <YAxis type="number" />
           {dataConfig.map((lineProps) => (
             <Line
+              animationDuration={500}
               key={lineProps.dataKey}
               type="monotone"
               strokeWidth={2}
