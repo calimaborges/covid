@@ -1,9 +1,18 @@
 import React from "react";
+import * as Sentry from '@sentry/browser';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false, error: null };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    Sentry.withScope((scope) => {
+      scope.setExtras(errorInfo);
+      const eventId = Sentry.captureException(error);
+      this.setState({eventId});
+  });
   }
 
   static getDerivedStateFromError(error) {
