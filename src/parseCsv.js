@@ -10,10 +10,15 @@ export default function parseCsv(url) {
       keepEmptyRows: false,
       skipEmptyLines: true,
       transformHeader: function (header) {
-        if (/regi.o/.test(header)) {
-          return "regiao";
-        } else {
-          return header;
+        // region;sigla;date;cases_inc;cases;deaths_inc;deaths
+        switch (header) {
+          case "region": return "regiao";
+          case "date": return "data";
+          case "cases_inc": return "casosNovos";
+          case "cases": return "casosAcumulados";
+          case "deaths_inc": return "obitosNovos";
+          case "deaths": return "obitosAcumulados";
+          default: return header;
         }
       },
     });
