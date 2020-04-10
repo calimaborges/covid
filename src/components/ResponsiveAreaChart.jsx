@@ -7,14 +7,20 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  ReferenceLine
+  ReferenceLine,
 } from "recharts";
-import { scaleLog } from 'd3-scale';
-const scaleFunction = scaleLog().base(10);
+import { scaleLog } from "d3-scale";
+let domain = [0, "dataMax"];
 
-export default function ResponsiveAreaChart({ scale, data, config, reference }) {
+export default function ResponsiveAreaChart({
+  scale,
+  data,
+  config,
+  reference,
+}) {
   if (scale === "log") {
-    scale = scaleFunction;
+    scale = scaleLog().base(10);
+    domain = [1, "dataMax"];
   }
   return (
     <ResponsiveContainer width="100%" minHeight={350}>
@@ -25,7 +31,7 @@ export default function ResponsiveAreaChart({ scale, data, config, reference }) 
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
         <XAxis dataKey="data" />}
-        <YAxis scale={scale} domain={[1, "dataMax"]} allowDataOverflow />
+        <YAxis scale={scale} domain={domain} allowDataOverflow />
         <ReferenceLine x={data[reference].data} stroke="black" />
         {config.map((lineProps) => (
           <Area
