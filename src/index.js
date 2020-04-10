@@ -11,13 +11,14 @@ import parseCsv from "./parseCsv";
 import getCsvInfo from "./getCsvInfo";
 import ErrorBoundary from "./ErrorBoundary";
 
-console.log("Environment:", process?.env?.NODE_ENV);
-
 if (process?.env?.NODE_ENV === "production") {
   Sentry.init({
     dsn:
-      "https://4fc9997d34524be6abd06adb9ed14e00@o367894.ingest.sentry.io/5196642",
+    "https://4fc9997d34524be6abd06adb9ed14e00@o367894.ingest.sentry.io/5196642",
   });
+  console.log("Sentry ativado.");
+} else {
+  console.log("Sentry desativado.", `NODE_ENV: ${process?.env?.NODE_ENV}`);
 }
 
 async function main() {
