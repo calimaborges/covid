@@ -1,5 +1,5 @@
 import React from "react";
-import * as Sentry from '@sentry/browser';
+import * as Sentry from "@sentry/browser";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -11,8 +11,8 @@ class ErrorBoundary extends React.Component {
     Sentry.withScope((scope) => {
       scope.setExtras(errorInfo);
       const eventId = Sentry.captureException(error);
-      this.setState({eventId});
-  });
+      this.setState({ eventId });
+    });
   }
 
   static getDerivedStateFromError(error) {
@@ -33,6 +33,7 @@ class ErrorBoundary extends React.Component {
             <a href="https://covid.saude.gov.br">https://covid.saude.gov.br</a>{" "}
             até o problema ser corrigido
           </p>
+          <p>ID: {this.state.eventId}</p>
           <p>{errorMessage}</p>
         </>
       );
