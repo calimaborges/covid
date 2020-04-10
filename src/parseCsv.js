@@ -13,7 +13,7 @@ export default function parseCsv(url) {
         // region;sigla;date;cases_inc;cases;deaths_inc;deaths
         switch (header) {
           case "region": return "regiao";
-          // case "date": return "data";
+          case "date": return "data";
           case "cases_inc": return "casosNovos";
           case "cases": return "casosAcumulados";
           case "deaths_inc": return "obitosNovos";
