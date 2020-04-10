@@ -5,13 +5,20 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import groupBy from "lodash.groupby";
+import * as Sentry from '@sentry/browser';
 import App from "./App";
 import parseCsv from "./parseCsv";
 import getCsvInfo from "./getCsvInfo";
+import ErrorBoundary from "./ErrorBoundary";
 
+if (window.env && window.env.NODE_ENV === "production") {
+  Sentry.init({
+    dsn: "https://af6f260b6d2d478f9ad3430c0f67102f@sentry.io/5172534",
+  });
+}
 
 async function main() {
-  const mainComponent = document.getElementById("root")
+  const mainComponent = document.getElementById("root");
   mainComponent.innerHTML = `<p>Obtendo endereço do CSV...</p>`;
   const { url, dataAtualizacao } = await getCsvInfo();
 
@@ -38,7 +45,9 @@ async function main() {
 
   ReactDOM.render(
     <React.StrictMode>
-      <App data={dataGroupedBySigla} dataAtualizacao={dataAtualizacao} />
+      <ErrorBoundary>
+        <App data={dataGroupedBySigla} dataAtualizacao={dataAtualizacao} />
+      </ErrorBoundary>
     </React.StrictMode>,
     mainComponent
   );
