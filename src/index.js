@@ -5,7 +5,7 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import groupBy from "lodash.groupby";
-import * as Sentry from '@sentry/browser';
+import * as Sentry from "@sentry/browser";
 import App from "./App";
 import parseCsv from "./parseCsv";
 import getCsvInfo from "./getCsvInfo";
@@ -15,7 +15,8 @@ console.log("Environment:", process?.env?.NODE_ENV);
 
 if (process?.env?.NODE_ENV === "production") {
   Sentry.init({
-    dsn: "https://af6f260b6d2d478f9ad3430c0f67102f@sentry.io/5172534",
+    dsn:
+      "https://4fc9997d34524be6abd06adb9ed14e00@o367894.ingest.sentry.io/5196642",
   });
 }
 
