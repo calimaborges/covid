@@ -14,7 +14,7 @@ import ErrorBoundary from "./ErrorBoundary";
 if (process?.env?.NODE_ENV === "production") {
   Sentry.init({
     dsn:
-    "https://4fc9997d34524be6abd06adb9ed14e00@o367894.ingest.sentry.io/5196642",
+      "https://35cad82a71fd411490b2c9891acb863a@o43943.ingest.sentry.io/5196657",
   });
   console.log("Sentry ativado.");
 } else {
