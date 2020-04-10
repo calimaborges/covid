@@ -9,8 +9,13 @@ import {
   ResponsiveContainer,
   ReferenceLine
 } from "recharts";
+import { scaleLog } from 'd3-scale';
+const scaleFunction = scaleLog().base(10);
 
 export default function ResponsiveAreaChart({ scale, data, config, reference }) {
+  if (scale === "log") {
+    scale = scaleFunction;
+  }
   return (
     <ResponsiveContainer width="100%" minHeight={350}>
       <AreaChart
@@ -20,7 +25,7 @@ export default function ResponsiveAreaChart({ scale, data, config, reference }) 
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
         <XAxis dataKey="data" />}
-        <YAxis scale={scale} domain={[0.99, "dataMax"]} allowDataOverflow />
+        <YAxis scale={scale} domain={[1, "dataMax"]} allowDataOverflow />
         <ReferenceLine x={data[reference].data} stroke="black" />
         {config.map((lineProps) => (
           <Area
