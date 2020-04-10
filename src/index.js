@@ -11,7 +11,7 @@ import parseCsv from "./parseCsv";
 import getCsvInfo from "./getCsvInfo";
 import ErrorBoundary from "./ErrorBoundary";
 
-if (window.env && window.env.NODE_ENV === "production") {
+if (process.env && process.env.NODE_ENV === "production") {
   Sentry.init({
     dsn: "https://af6f260b6d2d478f9ad3430c0f67102f@sentry.io/5172534",
   });
