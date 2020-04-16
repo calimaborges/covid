@@ -35,6 +35,12 @@ function App({ data, dataAtualizacao }) {
 
   return (
     <div className={styles.Container}>
+      <div className={styles.Alert}>
+        <h3>ATENÇÃO</h3>
+        <p>O Ministério da Saúde não disponibilizou o relatório completo hoje (16/04/2020) :-/ O
+        relatório ficará desatualizado. Esperamos que até amanhã a situação se
+        estabilize.</p>
+      </div>
       <div className={styles.ButtonGroup}>
         <ToggleButton
           onClick={() => setEstado("BRASIL")}

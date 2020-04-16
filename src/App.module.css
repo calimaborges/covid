@@ -18,3 +18,10 @@
 .BoxGroupTitle {
   font-weight: bold;
 }
+
+.Alert {
+  background-color: #f44336;
+  padding: 0 1rem ;
+  color: white;
+  margin: 1rem;
+}

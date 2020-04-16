@@ -1,4 +1,18 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# covid
+
+## Fontes de dados
+
+### Dados populacionais
+
+- **AC**: https://www.ibge.gov.br/apps/populacao/projecao/jsdados/ac_dados.js
+- **AL**: https://www.ibge.gov.br/apps/populacao/projecao/jsdados/al_dados.js
+- **AM**: https://www.ibge.gov.br/apps/populacao/projecao/jsdados/al_dados.js
+- ...
+
+### Dados covid
+
+- https://covid.saude.gov.br
+
 
 ## Available Scripts
 
