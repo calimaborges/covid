@@ -4,4 +4,26 @@
   margin: 0.1rem;
   font-family: "Roboto Mono", monospace;
   outline: none;
+  background-color: white;
+  color: black;
+}
+
+.Button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.Button:active {
+  background-color: #666;
+  color: white;
+}
+
+.Active {
+  background-color: black;
+  color: white;
+}
+
+.Active:hover {
+  background-color: #444;
+  color: white;
 }

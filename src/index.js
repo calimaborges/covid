@@ -10,13 +10,13 @@ import App from "./App";
 import parseCsv from "./parseCsv";
 import getCsvInfo from "./getCsvInfo";
 import ErrorBoundary from "./ErrorBoundary";
+import acumularDadosPorEstadosEscolhidos from "./acumularDadosPorEstadosEscolhidos";
 
 if (process?.env?.NODE_ENV === "production") {
   Sentry.init({
     dsn:
       "https://35cad82a71fd411490b2c9891acb863a@o43943.ingest.sentry.io/5196657",
   });
-  console.log("Sentry ativado.");
 } else {
   console.log("Sentry desativado.", `NODE_ENV: ${process?.env?.NODE_ENV}`);
 }
@@ -30,22 +30,7 @@ async function main() {
   const csv = await parseCsv(url);
 
   const dataGroupedBySigla = groupBy(csv.data, "sigla");
-  const dataGroupedByData = groupBy(csv.data, "data");
-
-  for (let key in dataGroupedByData) {
-    dataGroupedByData[key] = dataGroupedByData[key].reduce((soma, curr) => {
-      return {
-        sigla: "BRASIL",
-        regiao: "BRASIL",
-        data: key,
-        casosNovos: (soma.casosNovos || 0) + curr.casosNovos,
-        casosAcumulados: (soma.casosAcumulados || 0) + curr.casosAcumulados,
-        obitosNovos: (soma.obitosNovos || 0) + curr.obitosNovos,
-        obitosAcumulados: (soma.obitosAcumulados || 0) + curr.obitosAcumulados,
-      };
-    });
-  }
-  dataGroupedBySigla["BRASIL"] = Object.values(dataGroupedByData);
+  dataGroupedBySigla["BRASIL"] = acumularDadosPorEstadosEscolhidos(dataGroupedBySigla, Object.keys(dataGroupedBySigla), "BRASIL");
 
   ReactDOM.render(
     <React.StrictMode>

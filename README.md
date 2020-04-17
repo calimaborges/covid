@@ -12,6 +12,7 @@
 ### Dados covid
 
 - https://covid.saude.gov.br
+- https://api.covid19api.com/summary
 
 
 ## Available Scripts

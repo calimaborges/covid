@@ -4,6 +4,9 @@ import ResponsiveAreaChart from "./components/ResponsiveAreaChart";
 import ToggleButton from "./components/ToggleButton";
 import CounterBox from "./components/CounterBox";
 import styles from "./App.module.css";
+import acumularDadosPorEstadosEscolhidos from "./acumularDadosPorEstadosEscolhidos";
+
+const quantidadeDiasSemMovimentoCsv = 26;
 
 const novosConfig = [
   { dataKey: "casosNovos", name: "Casos novos", stroke: "#99d066" },
@@ -27,24 +30,58 @@ const acumuladosConfig = [
 
 function App({ data, dataAtualizacao }) {
   const { BRASIL, ...estados } = data;
+  const [deveAcumular, setDeveAcumular] = React.useState(false);
   const [scale, setScale] = React.useState("linear");
-  const [estado, setEstado] = React.useState("BRASIL");
+  const [estadosEscolhidos, setEstadosEscolhidos] = React.useState(["BRASIL"]);
 
-  const relevantData = data[estado].slice(26);
+  function atualizarEstados(estado) {
+    return function () {
+      if (deveAcumular) {
+        setEstadosEscolhidos((estados) => {
+          if (estados.includes(estado) && estados.length === 1) {
+            return estados;
+          } else if (estados.includes(estado)) {
+            return estados.filter((e) => e !== estado);
+          } else {
+            return [estado, ...estados];
+          }
+        });
+      } else {
+        setEstadosEscolhidos([estado]);
+      }
+    };
+  }
+
+  let relevantDatas = {};
+  for (let estadoEscolhido of estadosEscolhidos) {
+    relevantDatas = {
+      ...relevantDatas,
+      [estadoEscolhido]: data[estadoEscolhido].slice(
+        quantidadeDiasSemMovimentoCsv
+      ),
+    };
+  }
+
+  const relevantData = estadosEscolhidos.includes("BRASIL")
+    ? relevantDatas["BRASIL"]
+    : acumularDadosPorEstadosEscolhidos(relevantDatas, estadosEscolhidos);
+
   const [currentBox, setCurrentBox] = React.useState(relevantData.length - 1);
 
   return (
     <div className={styles.Container}>
       <div className={styles.Alert}>
         <h3>ATENÇÃO</h3>
-        <p>O Ministério da Saúde não disponibilizou o relatório completo hoje (16/04/2020) :-/ O
-        relatório ficará desatualizado. Esperamos que até amanhã a situação se
-        estabilize.</p>
+        <p>
+          O Ministério da Saúde não disponibilizou o relatório completo hoje
+          (16/04/2020) :-/ O relatório ficará desatualizado. Esperamos que até
+          amanhã a situação se estabilize.
+        </p>
       </div>
       <div className={styles.ButtonGroup}>
         <ToggleButton
-          onClick={() => setEstado("BRASIL")}
-          active={estado === "BRASIL"}
+          onClick={atualizarEstados("BRASIL")}
+          active={estadosEscolhidos.includes("BRASIL")}
         >
           BRASIL
         </ToggleButton>
@@ -53,12 +90,25 @@ function App({ data, dataAtualizacao }) {
           .map((sigla) => (
             <ToggleButton
               key={sigla}
-              onClick={() => setEstado(sigla)}
-              active={estado === sigla}
+              onClick={atualizarEstados(sigla)}
+              active={estadosEscolhidos.includes(sigla)}
             >
               {sigla}
             </ToggleButton>
           ))}
+      </div>
+      <div className={styles.ButtonGroup}>
+        <ToggleButton
+          onClick={() => setDeveAcumular(acumular => !acumular)}
+          active={deveAcumular}
+        >
+          Acumular estados
+        </ToggleButton>
+        <ToggleButton onClick={() => {
+          setEstadosEscolhidos(Object.keys(estados));
+        }}>
+          Todos os estados
+        </ToggleButton>
       </div>
       <div className={styles.BoxGroupTitle}>
         {relevantData[currentBox].data}
