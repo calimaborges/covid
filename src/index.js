@@ -26,8 +26,13 @@ async function main() {
   mainComponent.innerHTML = `<p>Obtendo endereço do CSV...</p>`;
   const { url, dataAtualizacao } = await getCsvInfo();
 
-  mainComponent.innerHTML = `<p>Obtendo CSV de ${url}...</p>`;
-  const csv = await parseCsv(url);
+  mainComponent.innerHTML = `<p>Baixando CSV de ${url}...</p>`;
+  const response = await fetch(url);
+  const multipleCsvString = await response.text();
+  const [csvString] = multipleCsvString.split(";;;;;;");
+
+  mainComponent.innerHTML = `<p>Convertendo CSV...</p>`;
+  const csv = await parseCsv(csvString);
 
   const dataGroupedBySigla = groupBy(csv.data, "sigla");
   const dataGroupedByData = groupBy(csv.data, "data");

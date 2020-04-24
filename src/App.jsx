@@ -67,27 +67,23 @@ function App({ data, dataAtualizacao }) {
         <CounterBox
           legend={acumuladosConfig[0].name}
           color={acumuladosConfig[0].stroke}
-          amount={relevantData[currentBox].casosAcumulados.toLocaleString(
-            "pt-BR"
-          )}
+          amount={relevantData[currentBox].casosAcumulados}
         />
         <CounterBox
           legend={acumuladosConfig[1].name}
           color={acumuladosConfig[1].stroke}
-          amount={relevantData[currentBox].obitosAcumulados.toLocaleString(
-            "pt-BR"
-          )}
+          amount={relevantData[currentBox].obitosAcumulados}
         />
         <CounterBox
           legend={novosConfig[0].name}
           color={novosConfig[0].stroke}
-          amount={relevantData[currentBox].casosNovos.toLocaleString("pt-BR")}
+          amount={relevantData[currentBox].casosNovos}
           bgColor="#ffffff"
         />
         <CounterBox
           legend={novosConfig[1].name}
           color={novosConfig[1].stroke}
-          amount={relevantData[currentBox].obitosNovos.toLocaleString("pt-BR")}
+          amount={relevantData[currentBox].obitosNovos}
           bgColor="#ffffff"
         />
         <button

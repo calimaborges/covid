@@ -1,10 +1,9 @@
 import Papa from "papaparse";
 
-export default function parseCsv(url) {
+export default async function parseCsv(csvString) {
   return new Promise((resolve) => {
-    Papa.parse(url, {
+    Papa.parse(csvString, {
       dynamicTyping: true,
-      download: true,
       complete: resolve,
       header: true,
       keepEmptyRows: false,

@@ -21,7 +21,7 @@ export default function CounterBox({
       }}
     >
       <legend className={styles.Legend}>{legend}</legend>
-      <div className={styles.Content}>{amount}</div>
+      <div className={styles.Content}>{amount?.toLocaleString("pt-BR")}</div>
     </div>
   );
 }
